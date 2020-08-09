@@ -41,6 +41,3 @@ Step 5: Test your pipeline
 
 
 
-Use Blue/Green Deployment
-
-This is the Flow Chart for Project https://app.lucidchart.com/invitations/accept/13a9ac4b-9837-4d26-bf7f-ade393a99308
