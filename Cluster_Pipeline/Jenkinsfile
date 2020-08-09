@@ -1,0 +1,36 @@
+pipeline {
+	agent any
+	stages {
+
+		stage('Setup kubernetes cluster') {
+			steps {
+				withAWS(region:'us-east-2', credentials:'Aws') {
+					sh '''
+						eksctl create cluster \
+						--name capstone \
+						--version 1.17 \
+						--nodegroup-name standard-workers \
+						--node-type t2.micro \
+						--nodes 3 \
+						--nodes-min 1 \
+						--nodes-max 4 \
+						--node-ami auto
+					'''
+				}
+			}
+		}
+
+		
+
+		stage('Make conf file ') {
+			steps {
+				withAWS(region:'us-east-2', credentials:'Aws') {
+					sh '''
+						aws eks --region us-east-2 update-kubeconfig --name capstone
+					'''
+				}
+			}
+		}
+
+	}
+}
